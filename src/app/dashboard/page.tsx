@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 const CalendarPage = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Tareas" />
 
       <div className="sm:grid-cols-2">
         <div className="flex flex-col">
