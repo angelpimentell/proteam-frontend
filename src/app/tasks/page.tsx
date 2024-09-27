@@ -76,6 +76,37 @@ const CalendarPage = () => {
     addTaskToProject(projectName, taskName);
   }
 
+  const changeTaskStatus = (projectId: any, taskId: any) => {
+    setState((prevState) =>
+      prevState.map((project) => {
+        if (project.id == projectId) {
+          return {
+            ...project,
+            tasks: project.tasks.map((task) => {
+              if (task.id == taskId) {
+                const nextStatus = getNextStatus(task.status);
+                return { ...task, status: nextStatus };
+              }
+              return task;
+            }),
+          };
+        }
+        return project;
+      })
+    );
+  };
+
+  const getNextStatus = (currentStatus: any) => {
+    switch (currentStatus) {
+      case 'Pendiente':
+        return 'En Progreso';
+      case 'En Progreso':
+        return 'Hecho';
+      default:
+        return 'Pendiente';
+    }
+  };
+
   return (
     <DefaultLayout>
 
@@ -88,6 +119,11 @@ const CalendarPage = () => {
                 <div key={task.id} className="p-4 bg-white rounded-lg shadow">
                   <h3 className="text-sm font-medium mb-2">{task.status}</h3>
                   <p className="text-base text-gray-800">{task.name}</p>
+                  <button
+                                    onClick={() => changeTaskStatus(project.id, task.id)}
+
+                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                  >Cambiar status</button>
                 </div>
               ))}
             </div>
