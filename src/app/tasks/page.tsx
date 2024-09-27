@@ -11,7 +11,7 @@ import { useState } from "react";
 const projects = [
   {
     id: 1,
-    name: 'Proyecto A',
+    name: 'Desarrollo',
     tasks: [
       { id: 1, name: 'Tarea 1', status: 'Pendiente' },
       { id: 2, name: 'Tarea 2', status: 'En Progreso' },
@@ -20,7 +20,7 @@ const projects = [
   },
   {
     id: 2,
-    name: 'Proyecto B',
+    name: 'Contabilidad',
     tasks: [
       { id: 4, name: 'Tarea 4', status: 'Pendiente' },
       { id: 5, name: 'Tarea 5', status: 'En Progreso' },
@@ -39,17 +39,36 @@ const CalendarPage = () => {
   const [lastProjectId, setlastProjectId] = useState(2);
 
   function addTaskToProject(projectName: any, task: any) {
+    var projectExists = false;
+
     for (let project of projects) {
       // Verificamos si el nombre del proyecto coincide
       if (project.name === projectName) {
         // Agregamos la nueva tarea a la lista de tareas
         var nextTaskId = lastTaskId + 1;
-        project.tasks.push( { id: nextTaskId, name: task, status: statuses[0] }  );
+        project.tasks.push({ id: nextTaskId, name: task, status: statuses[0] });
         setlastTaskId(nextTaskId);
-        console.log(`Tarea agregada al proyecto "${projectName}":`, task);
-      } else {
-        console.log(`El proyecto "${projectName}" no fue encontrado.`);
       }
+    }
+
+
+    if (projectExists == false) {
+      var nextProjectId = lastProjectId + 1;
+      var nextTaskId = lastTaskId + 1;
+
+      var data = {
+        id: nextProjectId,
+        name: task,
+        tasks: [
+          { id: nextTaskId, name: task, status: statuses[0] },
+        ],
+      };
+
+      projects.push(data);
+
+
+      setlastTaskId(nextTaskId);
+      setlastProjectId(nextProjectId);
     }
   }
 
