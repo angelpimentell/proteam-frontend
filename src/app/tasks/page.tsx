@@ -31,9 +31,32 @@ const projects = [
 const statuses = ['Pendiente', 'En Progreso', 'Hecho'];
 
 
-
 const CalendarPage = () => {
   const [state, setState] = useState(projects);
+  const [taskName, setTaskName] = useState('');
+  const [projectName, setProjectName] = useState('');
+  const [lastTaskId, setlastTaskId] = useState(7);
+  const [lastProjectId, setlastProjectId] = useState(2);
+
+  function addTaskToProject(projectName: any, task: any) {
+    for (let project of projects) {
+      // Verificamos si el nombre del proyecto coincide
+      if (project.name === projectName) {
+        // Agregamos la nueva tarea a la lista de tareas
+        var nextTaskId = lastTaskId + 1;
+        project.tasks.push( { id: nextTaskId, name: task, status: statuses[0] }  );
+        setlastTaskId(nextTaskId);
+        console.log(`Tarea agregada al proyecto "${projectName}":`, task);
+      } else {
+        console.log(`El proyecto "${projectName}" no fue encontrado.`);
+      }
+    }
+  }
+
+  const saveTask = function (event: any) {
+    event.preventDefault();
+    addTaskToProject(projectName, taskName);
+  }
 
   return (
     <DefaultLayout>
@@ -70,7 +93,8 @@ const CalendarPage = () => {
 
                 <InputGroup
                   label="Proyecto"
-                  type="project_name"
+                  type="input"
+                  onChange={(event: any) => setProjectName(event.target.value)}
                   placeholder="Nombre de Proyecto"
                   customClasses="mb-4.5"
                   required
@@ -78,13 +102,14 @@ const CalendarPage = () => {
 
                 <InputGroup
                   label="Tarea"
-                  type="task_name"
+                  type="input"
+                  onChange={(event: any) => setTaskName(event.target.value)}
                   placeholder="Nombre de Tarea"
                   customClasses="mb-4.5"
                   required
                 />
 
-                <div className="mb-6">
+                {/* <div className="mb-6">
                   <label className="mb-3 block text-body-sm font-medium text-dark dark:text-white">
                     Descripcion
                   </label>
@@ -93,9 +118,9 @@ const CalendarPage = () => {
                     placeholder="Descripcion de tarea"
                     className="w-full rounded-[7px] border-[1.5px] border-stroke bg-transparent px-5 py-3 text-dark outline-none transition placeholder:text-dark-6 focus:border-primary active:border-primary disabled:cursor-default dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:focus:border-primary"
                   ></textarea>
-                </div>
+                </div> */}
 
-                <button className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium text-white hover:bg-opacity-90">
+                <button onClick={saveTask} className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium text-white hover:bg-opacity-90">
                   Guardar
                 </button>
               </div>
