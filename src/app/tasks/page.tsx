@@ -7,24 +7,23 @@ import InputGroup from "@/components/FormElements/InputGroup";
 import { useState } from "react";
 
 
-
 const projects = [
   {
     id: 1,
     name: 'Desarrollo',
     tasks: [
-      { id: 1, name: 'Tarea 1', status: 'Pendiente' },
-      { id: 2, name: 'Tarea 2', status: 'En Progreso' },
-      { id: 3, name: 'Tarea 3', status: 'Hecho' },
+      { id: 1, name: 'Configuración del entorno de desarrollo', status: 'Pendiente' },
+      { id: 2, name: 'Implementación de la funcionalidad principal', status: 'En Progreso' },
+      { id: 3, name: 'Realizar pruebas de unidad', status: 'Hecho' },
     ],
   },
   {
     id: 2,
     name: 'Contabilidad',
     tasks: [
-      { id: 4, name: 'Tarea 4', status: 'Pendiente' },
-      { id: 5, name: 'Tarea 5', status: 'En Progreso' },
-      { id: 6, name: 'Tarea 6', status: 'Hecho' },
+      { id: 4, name: 'Revisión de facturas', status: 'Pendiente' },
+      { id: 5, name: 'Preparación de informes mensuales', status: 'En Progreso' },
+      { id: 6, name: 'Conciliación bancaria', status: 'Hecho' },
     ],
   },
 ];
