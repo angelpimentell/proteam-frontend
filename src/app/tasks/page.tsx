@@ -57,7 +57,7 @@ const CalendarPage = () => {
 
       var data = {
         id: nextProjectId,
-        name: task,
+        name: projectName,
         tasks: [
           { id: nextTaskId, name: task, status: statuses[0] },
         ],
