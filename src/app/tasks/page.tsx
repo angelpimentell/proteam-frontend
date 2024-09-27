@@ -119,11 +119,14 @@ const CalendarPage = () => {
                 <div key={task.id} className="p-4 bg-white rounded-lg shadow">
                   <h3 className="text-sm font-medium mb-2">{task.status}</h3>
                   <p className="text-base text-gray-800">{task.name}</p>
+                  {task.status !== 'Hecho' && (
                   <button
-                                    onClick={() => changeTaskStatus(project.id, task.id)}
-
+                    onClick={() => changeTaskStatus(project.id, task.id)}
                     className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                  >Cambiar status</button>
+                  >
+                    Cambiar Estado
+                  </button>
+                )}
                 </div>
               ))}
             </div>
