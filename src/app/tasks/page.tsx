@@ -1,17 +1,12 @@
+"use client";
+
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import CalendarBox from "@/components/CalenderBox";
 import InputGroup from "@/components/FormElements/InputGroup";
-import SelectGroupOne from "@/components/FormElements/SelectGroup/SelectGroupOne";
-import Link from "next/link";
+import { useState } from "react";
 
-export const metadata: Metadata = {
-  title: "Next.js Calender Page | NextAdmin - Next.js Dashboard Kit",
-  description:
-    "This is Next.js Calender page for NextAdmin  Tailwind CSS Admin Dashboard Kit",
-  // other metadata
-};
+
 
 const projects = [
   {
@@ -35,12 +30,16 @@ const projects = [
 ];
 const statuses = ['Pendiente', 'En Progreso', 'Hecho'];
 
+
+
 const CalendarPage = () => {
+  const [state, setState] = useState(projects);
+
   return (
     <DefaultLayout>
 
       <div className="flex space-x-8 overflow-x-auto">
-        {projects.map((project) => (
+        {state.map((project) => (
           <div key={project.id} className="flex-shrink-0 w-96 bg-gray-100 p-4 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">{project.name}</h2>
             <div className="space-y-4">
@@ -69,12 +68,18 @@ const CalendarPage = () => {
             <form action="#">
               <div className="p-6.5">
 
-                <SelectGroupOne />
+                <InputGroup
+                  label="Proyecto"
+                  type="project_name"
+                  placeholder="Nombre de Proyecto"
+                  customClasses="mb-4.5"
+                  required
+                />
 
                 <InputGroup
-                  label="Nombre"
-                  type="name"
-                  placeholder="Nombre de tarea"
+                  label="Tarea"
+                  type="task_name"
+                  placeholder="Nombre de Tarea"
                   customClasses="mb-4.5"
                   required
                 />
