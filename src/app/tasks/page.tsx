@@ -112,13 +112,13 @@ const CalendarPage = () => {
 
       <div className="flex space-x-8 overflow-x-auto">
         {state.map((project) => (
-          <div key={project.id} className="flex-shrink-0 w-96 bg-gray-100 p-4 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">{project.name}</h2>
+          <div key={project.id} className="dark:border-dark-3 dark:bg-gray-dark dark:shadow-card flex-shrink-0 w-96 bg-gray-100 p-4 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4 dark:text-white">{project.name}</h2>
             <div className="space-y-4">
               {project.tasks.map((task) => (
-                <div key={task.id} className="p-4 bg-white rounded-lg shadow">
-                  <h3 className="text-sm font-medium mb-2">{task.status}</h3>
-                  <p className="text-base text-gray-800">{task.name}</p>
+                <div key={task.id} className="p-4 bg-white rounded-lg shadow dark:border-dark-3 dark:bg-gray-dark dark:shadow-card">
+                  <h3 className="text-sm font-medium mb-2 dark:text-white">{task.status}</h3>
+                  <p className="text-base text-gray-800 dark:text-white">{task.name}</p>
                   {task.status !== 'Hecho' && (
                   <button
                     onClick={() => changeTaskStatus(project.id, task.id)}
@@ -177,7 +177,7 @@ const CalendarPage = () => {
                   ></textarea>
                 </div> */}
 
-                <button onClick={saveTask} className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium text-white hover:bg-opacity-90">
+                <button onClick={saveTask} className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                   Guardar
                 </button>
               </div>
