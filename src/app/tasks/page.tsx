@@ -177,7 +177,7 @@ const CalendarPage = () => {
                   ></textarea>
                 </div> */}
 
-                <button onClick={saveTask} className="flex w-full justify-center rounded-[7px] bg-primary p-[13px] font-medium mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                <button onClick={saveTask} className="flex w-full justify-center rounded-[7px] p-[13px] font-medium mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                   Guardar
                 </button>
               </div>
